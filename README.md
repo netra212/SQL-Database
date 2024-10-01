@@ -37,9 +37,9 @@ This repository contains all the learning materials, projects, and code examples
 
 - To clone this repository to your local machine, use the following command:
   
-  git clone https://github.com/your-username/your-repository.git
+  git clone https://github.com/netra212/SQL-Database.git
 
 - Navigate to the sql+database folder:
   
-  cd your-repository/sql+database
+  cd sql+database
 
