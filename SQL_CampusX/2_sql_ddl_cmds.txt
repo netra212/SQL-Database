@@ -106,3 +106,22 @@ CREATE TABLE ORDERS(
     ON DELETE SET NULL, --> CustomerTable ma delete vayo vane, orderTable ma value automatically null value assign gardinxa.
 )  
 ---------------------------------------------------------------------------------------------------------
+
+ALTER TABLE COMMANDS:-
+ALTER TABLE customers ADD COLUMN password VARCHAR(255) NOT NULL
+
+--- Inserting the column in between the other columns ---
+ALTER TABLE customers ADD COLUMN surname VARCHAR(255) NOT NULL AFTER name
+
+-- Adding two new columns. 
+ALTER TABLE customers
+ADD COLUMN pan_number VARCHAR(255) AFTER surname
+ADD COLUMN joining_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+-- Deleting the Columns. 
+ALTER TABLE customers DROP COLUMN pan_number
+
+-- Dropping two columns.
+ALTER TABLE customers 
+DROP COLUMN password, 
+DROP COLUMN joining_date
