@@ -125,3 +125,9 @@ ALTER TABLE customers DROP COLUMN pan_number
 ALTER TABLE customers 
 DROP COLUMN password, 
 DROP COLUMN joining_date
+
+-- Modifying Columns. 
+ALTER TABLE customers INTEGER AUTO_INCREMENT
+
+-- Modifying Constraint. 
+ALTER TABLE customers ADD CONSTRAINT customer_age_check (age > 13)
