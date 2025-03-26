@@ -1,0 +1,23 @@
+------------------------------------------
+# What is SQL ?
+------------------------------------------
+- SQL (Structured Query Language) is a programming language used for managing and manipulating data in relational databases. It allows you to insert, update,retrieve, and delete data in a database. It is widely used for data management in many applications, websites, and businesses. In simple terms, SQL is used to communicate with and control databases.
+
+Types of SQL Commands:
+
+</DDL: Data Definition Language>
+    - CREATE
+    - ALTER 
+    - DROP 
+    - TRUNCATE
+
+</DML: Data Manipulation Language>
+    - INSERT 
+    - UPDATE 
+    - DELETE 
+    - SELECT 
+
+</TCL: Transaction Control Language>
+    - COMMIT - Save Database changes and end transactions.
+    - ROLLBACK - Undo changes that are not committed and end the transactions.
+    
