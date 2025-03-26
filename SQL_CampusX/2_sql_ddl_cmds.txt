@@ -21,7 +21,6 @@ Types of SQL Commands:
     - COMMIT - Save Database changes and end transactions.
     - ROLLBACK - Undo changes that are not committed and end the transactions.
 
-
 ----------------------------
 # Constraints in MySQL
 ----------------------------
@@ -37,6 +36,73 @@ Types of SQL Commands:
 
     Referential Actions
         1. RESTRICT
+            - Do not allow to change anything. 
         2. CASCADE
+            MODE RESTRICT cha vane, delete garna mildaina. Do not allow changes. 
+            MODE CASCADE cha vane, every order of netra kc can be deleted. 
         3. SET NULL
+
         4. SET DEFAULT
+
+---------------------------------------------------------------------------------------------------------
+CREATE TABLE USERS(
+    user_id INTEGER NOT NULL PRIMARY KEY, 
+    name VARCHAR(255) NOT NULL, 
+    email VARCHAR(255) NOT NULL, 
+    password VARCHAR(255) NOT NULL, 
+
+    -- Benefits of using Constraint: we can give separate name to our implemented constraint.
+    CONSTRAINT users_email_unique UNIQUE(name, email, password),
+
+    -- Benefit of making primary key this way: If we are not able to make the primary key 
+    -- in above way then we can use this way.
+    CONSTRAINT users_pk PRIMARY KEY (user_id)
+)
+
+CREATE TABLE STUDENTS(
+    student_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL, 
+    age INTEGER CHECK (age > 6 AND age < 25),
+
+    CONSTRAINT student_age_check ()  
+)
+
+-- Setting default value. 
+CREATE TABLE ticket(
+    ticket_id INTEGER PRIMARY KEY, 
+    name VARCHAR(255) NOT NULL, 
+    travel_date DATE DEFAULT CURRENT_TIMESTAMP
+)
+
+-- Implementing the Foreign Key. 
+CREATE TABLE CUSTOMER(
+    customer_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+    customer_name VARCHAR(255) NOT NULL, 
+    customer_email VARCHAR(255) NOT NUll UNIQUE
+)
+
+CREATE TABLE ORDERS(
+    order_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+    customer_id INTEGER NOT NULL, 
+    order_date DATE NOT NULL NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    -- implementing foreign key.
+
+    CONSTRAINT orders_fk FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)
+)
+DROP TABLE ORDER;
+-- Foreign key maintains the integrity of the data. 
+-- If two tables are related via foreign key, changing on one table can action by another table. 
+
+-- 
+CREATE TABLE ORDERS(
+    order_id INTEGER PRIMARY KEY, 
+    customer_id NOT NULL, 
+    order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+
+    CONSTRAINT orders_fk FOREIGN_KEY (customer_id) REFERENCES CUSTOMER(customer_id),
+
+    ON DELETE CASCADE, --> Customer table ma delete vayo vane automatically order table batww nii delete hunxa. 
+    ON UPDATE CASCADE --> Customer table ma update vayo vane, order table ma automatically delete hunxa. 
+    ON DELETE SET NULL, --> CustomerTable ma delete vayo vane, orderTable ma value automatically null value assign gardinxa.
+)  
+---------------------------------------------------------------------------------------------------------
