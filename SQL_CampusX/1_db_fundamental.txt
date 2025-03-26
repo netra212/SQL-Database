@@ -119,3 +119,8 @@ Suppose we have two tables:-
 
 What can be the primary key in the enrollment table ?
 -> No, Primary Key so. StudentID + CourseID => Composite Key. 
+
+------------------------------------------
+# Cardinality of Relationship:
+------------------------------------------
+- Cardinality in database relationships refers to the number of occurrences of an entity in a relationship with another entity. Cardinality defines the number of instances of one entity that can be associated with a single instance of the related entity.
