@@ -1,0 +1,35 @@
+------------------------------------------
+# What is Database ?
+------------------------------------------
+A Database is a shared collection of logically related data and
+description of these data, designed to meet the information needs of
+an organization
+
+-> Data Storage: A database is used to store large amounts of structured data, making it easily accessible, searchable, and retrievable.
+
+-> Data Analysis: A database can be used to perform complex data analysis, generate reports, and provide insights into the data.
+
+-> Record Keeping: A database is often used to keep track of important records, such as financial transactions, customer information, and inventory levels.
+
+-> Web Applications: Databases are an essential component of many web
+applications, providing dynamic content and user management.
+
+------------------------------------------
+# Properties of an Ideal Database:
+------------------------------------------
+1. Integrity
+2. Availability
+3. Security
+4. Independent of Application
+5. Concurrency
+
+
+------------------------------------------
+# Types of Databases:
+------------------------------------------
+
+1. Relational Databases -
+2. NoSQL Databases - 
+3. Column Databases - 
+4. Graph Databases - 
+5. Key-Value Database - 
