@@ -42,3 +42,17 @@ applications, providing dynamic content and user management.
 
 5. Key-Value Database - 
     These databases store data as a collection of keys and values, making them well-suited for caching and simple data storage needs (Redis and Amazon DynamoDB).
+
+************************************************
+</Relational Databases>
+************************************************
+- Also known as SQL databases, these databases use a relational model to organize data into tables with rows and columns.
+    - Table => relation. 
+    - columns => attributes. 
+    - Rows => tuples. 
+    - Number or rows => Cardinality of the relation. 
+    - No. of attributes or columns => Degree of relation. 
+    - Domain specify that in particular column, which types of values should kept. 
+
+# </DBMS>
+- A database management system (DBMS) is a software system that provides the interfaces and tools needed to store, organize, and manage data in a database. A DBMS acts as an intermediary between the database and the applications or users that access the data stored in the database.
