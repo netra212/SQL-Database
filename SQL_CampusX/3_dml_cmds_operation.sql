@@ -92,7 +92,88 @@
 -- WHERE processor_brand NOT IN ('snapdragon', 'exynos', 'bionic')
 
 -- UPDATE 
+-- Update brand_name of mediatek with dimensity
+-- UPDATE campusx1.smartphones 
+-- SET processor_brand = 'dimensity' 
+-- WHERE processor_brand = 'mediatek'
 
+-- DELETE
+-- delete all phones price > 200000
+-- SELECT *
+-- FROM campusx1.smartphones
+-- WHERE price > 200000
+
+-- DELETE -- FROM campusx1.smartphones
+-- WHERE price > 200000
+
+-- DELETE WITH MULTIPLE CONDITION. 
+-- Delete phone with primary camera rear is greater than 150 mega pixels with samsung phone only. 
+-- DELETE FROM campusx1.smartphones
+-- WHERE primary_camera_rear > 150 AND brand_name = "samsung"
+
+-- Types of functions in SQL
+-- Aggregate functions. 
+-- MAX/MIN
+-- Q1. Find the minimum and maximum price. 
+-- SELECT MAX(price) as "max price of phone"
+-- FROM campusx1.smartphones
+
+-- SELECT MIN(price) as "min price of phone"
+-- FROM campusx1.smartphones
+
+-- Q2. Find the price of the costliest samsung phone. 
+-- SELECT MAX(price) as "costliest phone"
+-- FROM campusx1.smartphones
+-- WHERE brand_name = "samsung"
+
+-- -> AVG
+-- Find avg rating of apple phones. 
+-- SELECT AVG(rating) as "AVG Rating of Apple Phones"
+-- FROM campusx1.smartphones
+-- WHERE brand_name = "apple"
+
+-- SUM
+-- Total money required to buy all the phones. 
+-- ELECT SUM(price) as "total money required to buy all phones"
+-- FROM campusx1.smartphones
+
+-- COUNT 
+-- ** Find the number of oneplus phones. 
+-- SELECT COUNT(*) AS "count of oneplus phones"
+-- FROM campusx1.smartphones
+-- WHERE brand_name = "oneplus"
+
+-- COUNT(DISTINC)
+-- ** Find the number of brands available.
+-- SELECT COUNT(DISTINCT(brand_name)) AS "Total Number of Brands"
+-- FROM campusx1.smartphones
+
+-- STD 
+-- Find standard deviation of screen sizes. 
+-- SELECT STD(screen_size) AS "Standard Deviation of Screen size"
+-- FROM campusx1.smartphones
+
+-- VAR
+-- Find variance of xiaomi phone prices. 
+-- SELECT VARIANCE(price)
+-- FROM campusx1.smartphones
+-- WHERE brand_name = "xiaomi"
+
+
+-- SCALAR FUNCTIONS. 
+-- ABS
+-- ROUND
+-- ** Round the PPI to 1 decimal place. 
+-- SELECT model, 
+-- ROUND(SQRT(resolution_width * resolution_width + resolution_height * resolution_height)/screen_size,2) as 'PPI' 
+-- FROM campusx1.smartphones
+
+-- CEIL/FLOOR
+-- 4.1 -> 5 CEIL
+-- 4.9 -> 9 FLOOR
+-- ** floor/ceil the rating. 
+-- SELECT CEIL(screen_size) FROM campusx1.smartphones 
+-- SELECT FLOOR(screen_size) FROM campusx1.smartphones 
 
 
 
