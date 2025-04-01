@@ -1,1 +1,15 @@
-26th.
+SQL Functions
+1. Builtin Function. 
+    A. Scalar Round.
+        - 
+    B. Aggregate function: 
+        - Gives the summary of any columns by viewing whole rows. 
+        - AVG, MAX, MIN, SUM, COUNT, STD, VAR 
+2. UserDefined Function. 
+    Table:
+        StudentID, name, CGPA
+                          8.75
+                          9.12
+                          6.66
+        If we implement the round in this above CGPA table, It will gives like round of value. 
+
