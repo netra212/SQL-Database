@@ -107,6 +107,40 @@ FROM campusx1.smartphones
 WHERE brand_name = 'samsung'
 GROUP BY has_nfc;
 
--- HAVING CLAUSE.
+-- HAVING CLAUSE-- Filtering group by.
+-- SELECT --> WHERE. 
+-- GROUP BY --> HAVING. 
 -- 1. Find the avg rating of smartphones brands which have more than 20 phones. 
--- 2. 
+SELECT brand_name, 
+COUNT(*) AS 'count',
+ROUND(AVG(rating)) as 'avg_rating'
+FROM campusx1.smartphones
+GROUP BY brand_name
+HAVING count > 20
+ORDER BY avg_rating;
+
+-- 2 Find the top 2 brands with the highest average RAM that have a refresh rate of at least 90 Hz
+-- and fast charging available and don't consider brands which have less than 10 phones. 
+SELECT brand_name, 
+COUNT(*) AS "count",
+MAX(ram_capacity)
+AVG(refresh_rate) AS "avg_refresh_rate"
+FROM campusx1.smartphones
+GROUP BY brand_name
+HAVING avg_refresh_rate > 90 AND count > 10
+ORDER BY avg_refresh_rate;
+
+SELECT * FROM campusx1.smartphones
+
+-- 3. Find the avg price of all the phone brands with avg rating > 70 and num_phones more than 10 among 
+-- all 5g enabled phones. 
+
+-- ** PRACTICE
+-- 1. Find the top 5 batsman in IPL. 
+-- 2. Find the 2nd highest 6 hitter in IPL. 
+-- 3. Find Virat Kohli's performace against all IPL teams. 
+-- 4. Find top 10 batsman with centuries in IPL. 
+-- 5. Find the top 5 batsman with highest strike rate who have played a min of 1000 balls. 
+
+
+
