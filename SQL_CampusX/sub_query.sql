@@ -110,7 +110,68 @@ WITH fav_food AS (
 SELECT * FROM fav_food f1
 WHERE frequency = (SELECT MAX(frequency)
 					FROM fav_food f2
-					WHERE f2.user_id = f1.user_id)
+					WHERE f2.user_id = f1.user_id);
 
+
+-- Usage With SELECT. 
+-- 1. Get the percentage of votes for each movie compared to the total number of votes. 
+-- use sub_query;
+SELECT name, (votes/(SELECT SUM(votes) FROM movies)) * 100
+FROM movies;
+
+-- 2. Display all movie names, genre, score and avg (score) of genre.
+SELECT name, genre, score, (SELECT AVG(score) FROM movies m2 WHERE m2.genre = m1.genre)
+FROM movies m1;
+
+-- Usage with FROM
+-- 1. Display average rating of all the restaurants.
+SELECT r_name, avg_rating
+FROM (
+	SELECT r_id, AVG(restaurant_rating) AS 'avg_rating'
+	FROM orders
+	GROUP BY r_id
+) t1 JOIN restaurants t2
+ON t1.r_id = t2.r_id;
+
+-- Usage with HAVING.
+-- 1. Find genres having avg score > avg scores of all the movies. 
+SELECT genre, AVG(score)
+FROM movies
+GROUP BY genre
+HAVING AVG(score) > (SELECT AVG(score) FROM movies);
+
+-- Subquery in INSERT
+-- Populate a new table  
+CREATE TABLE loyal_users(
+	user_id INT, 
+	name VARCHAR(255),
+	money INT
+);
+-- Populate a already created loyal_customers table with records of only those
+-- customers who have ordered food more than 3 times. 
+
+INSERT INTO loyal_users 
+(user_id, name)
+SELECT t1.user_id, t2.name, COUNT(*)
+FROM orders t1
+JOIN users t2 
+ON t1.user_id = t2.user_id
+GROUP BY user_id
+HAVING COUNT(*) > 3;
+
+
+-- Subquery in UPDATE. 
+-- Populate the money col of loyal_customer table using the orders table. 
+-- Provide a 10% app money to all customers based on their order value. 
+UPDATE loyal_users
+SET money = (SELECT user_id, SUM(amount)*0.1
+			FROM orders
+			GROUP BY user_id);
+
+-- Subquery in DELETE
+-- Delete all the customers record who have never ordered.
+DELETE FROM users
+WHERE user_id IN (SELECT user_id FROM users
+WHERE user_id NOT IN (SELECT DISTINCT(user_id) FROM orders))
 
 
