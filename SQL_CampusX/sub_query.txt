@@ -1,0 +1,26 @@
+-- USE sub_query 
+
+-- SELECT MAX(score) FROM sub_query.movies
+
+-- Types of SubQueries. 
+	-- 1. The results in returns.
+		-- a. Scalar sub-query.
+			-- 9.3
+		-- b. Row sub-query: 
+			-- genres
+			-- horror
+            -- romance
+            -- actions
+		-- c. Table sub-query.
+			-- genre 	avg_rating
+			-- horror 	6.5
+            -- romance  7
+            -- action   6.8
+    
+-- 2. Based on working.
+	-- a. Independent sub-query
+		-- 
+    -- b. Correlated sub-query
+
+-- subqueries can be used with INSERT, SELECT, UPDATE, DELETE
+-- In SELECT --> WHERE, SELECT, FROM, HAVING
