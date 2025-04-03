@@ -6,4 +6,16 @@ returns the cartesian products of the two tables being joined.
 
 # Inner Joins
 - Combines data from two or more tables based on a specified condition. 
+- Joins on the basis of the common column. 
+- Example:-
+    Employee_ID     Name    Department_ID   Salary
+    Department_ID   Department_Name
+    Inner Joins Performs on the basis of Department_ID Only if the specified conditions meets. 
 
+
+# Left Joins:-
+- A left joins combines the rows from both tables based on a common column, but it also includes all the rows from the left tables, even if there are no matches in the right tables. This is useful when we want to include all the records from the first tables, but only some records from the second tables. 
+- Left tables means first table we ware taking. 
+
+# Right Joins:-
+- Exactly opposite of the Left Joins. 
