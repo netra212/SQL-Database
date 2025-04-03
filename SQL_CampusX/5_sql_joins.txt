@@ -19,3 +19,6 @@ returns the cartesian products of the two tables being joined.
 
 # Right Joins:-
 - Exactly opposite of the Left Joins. 
+
+# Full Outer Joins:-
+- Returns all the rows from the both tables like from left and right tables. 
