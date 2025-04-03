@@ -34,6 +34,12 @@
 -- GROUP BY t2.r_id
 
 -- 7. find number of votes and avg rating for all the restaurants. 
-
-
+-- SELECT r_name, 
+-- COUNT(*) AS 'num_votes', 
+-- AVG(restaurant_rating) AS 'avg_rating'
+-- FROM orders t1
+-- JOIN restaurants t2
+-- ON t1.r_id = t2.r_id
+-- WHERE restaurant_rating IS NOT NUll
+-- GROUP BY t1.r_id
 
