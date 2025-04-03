@@ -1,0 +1,18 @@
+Database Server Vs Client. 
+
+1. Database Server:-
+    A database server is a software application that provides access
+    to a database over a network. It manages and processes requests from multiple
+    clients, and performs tasks such as managing user authentication, concurrency
+    control, and transaction management. A database server is typically installed on a
+    dedicated computer or server, and is responsible for storing, managing, and
+    processing data.
+
+2. Database Client:-
+    A database client is a software application that connects to a database server and sends requests for data or database operations. It is the front-end interface that allows users to interact with the database, and provides tools such as query editors, data visualization, and reporting.
+
+3. Database:- 
+    A database is a collection of related data that is organized and stored in a structured format. It is designed to efficiently store, retrieve, and manage large amounts of data. A database can include multiple tables, indexes, and other objects that are used to manage and manipulate data.
+
+4. DBMS (Database Management System):-
+    A DBMS is a software application that provides tools for creating, managing, and manipulating databases. It includes a variety of functions and features, such as data storage, data retrieval, data backup and recovery, user management, and security. The DBMS is responsible for managing the underlying database, and provides a mechanism for users to interact with the data. 
