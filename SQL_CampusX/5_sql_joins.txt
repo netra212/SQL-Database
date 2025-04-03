@@ -1,2 +1,9 @@
 SQL Joins:
 - way to combine data from two or more database tables based on a related column between them. 
+
+# Cross Joins --> Cartesian Products. 
+returns the cartesian products of the two tables being joined. 
+
+# Inner Joins
+- Combines data from two or more tables based on a specified condition. 
+
