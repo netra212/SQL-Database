@@ -36,10 +36,28 @@
 -- 7. find number of votes and avg rating for all the restaurants. 
 -- SELECT r_name, 
 -- COUNT(*) AS 'num_votes', 
--- AVG(restaurant_rating) AS 'avg_rating'
+-- ROUND(AVG(restaurant_rating)) AS 'avg_rating'
 -- FROM orders t1
 -- JOIN restaurants t2
 -- ON t1.r_id = t2.r_id
 -- WHERE restaurant_rating IS NOT NUll
 -- GROUP BY t1.r_id
+
+-- 8. Find the food that is being sold at most number of restaurants. 
+-- 9. Find restaurants with max revenue in a given month. 
+-- 10. Find restaurants with sales > x. 
+-- 11. Find Customers who have never ordered. 
+-- 12. Show order details of a particular customer in a given date range. 
+-- 13. Customer favorite food. 
+-- 14. Find most costly restaurants (Avg price/dish).
+-- 15. Find delivery partner compensation using the formula (#deliveries * 100 + 1000 * avg_rating)
+-- 16. Find revenue per month for a restaurant. 
+-- 17. Find correlation between deliver_time and total rating. '
+-- 18. 
+
+
+
+
+
+
 
