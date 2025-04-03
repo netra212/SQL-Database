@@ -1,1 +1,2 @@
-27th.
+SQL Joins:
+- way to combine data from two or more database tables based on a related column between them. 
