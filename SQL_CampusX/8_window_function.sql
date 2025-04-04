@@ -35,7 +35,6 @@ FROM marks;
 
 -- RANK/DENSE_RANK/ROW_NUMBER
 -- RANK - Gives the rank on partition or Window.
--- 1. Find top 2 most paying customers of each month.
 SELECT *,
 RANK() OVER(PARTITION BY branch ORDER BY marks DESC )
 FROM marks;
@@ -51,9 +50,22 @@ SELECT *,
 ROW_NUMBER() OVER(PARTITION BY branch) 
 FROM marks;
 
--- 2. Create roll no.from branch and marks. 
+-- 1. Find top 2 most paying customers of each month.
+use zomato;
+SELECT * FROM (
+		SELECT user_id, MONTHNAME(date) AS 'month', 
+		SUM(amount) AS 'total_amount',
+		RANK() OVER(PARTITION BY MONTHNAME(date) ORDER BY SUM(amount) DESC) AS 'month_rank'
+		FROM orders
+		GROUP BY MONTHNAME(date), user_id
+		ORDER BY MONTHNAME(date)
+) t
+WHERE t.month_rank < 3
+ORDER BY month DESC, month_rank ASC
 
+-- 2. Create roll no.from branch and marks.
 
+-- FIRST_VALUE/LAST VALUE/NTH_VALUE
 
 
 
