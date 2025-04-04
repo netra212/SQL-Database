@@ -59,6 +59,43 @@ WHERE t.own_group_rank = 1;
 
 SELECT *,
 claim - FIRST_VALUE(claim) OVER(PARTITION BY region ORDER BY bmi DESC) AS 'highest_bmi'
+FROM insurance_data;
+
+-- 9. For each patient, calculate the difference in claim amount between the 
+-- patient and the patient with the highest claim amount among patients with 
+-- the smoker status, within the same region. Return the result in 
+-- descending order difference.
+SELECT *, 
+(MAX(claim) OVER(PARTITION BY region, smoker) - claim) AS 'claim_diff'
 FROM insurance_data
+ORDER BY claim_diff DESC;
+
+-- 10. For each patient, Find the Maximum BMI value among their next three records (ordered by age).
+-- need to use frame here. 
+SELECT *, 
+MAX(bmi) OVER(ORDER BY age ROWS BETWEEN 1 FOLLOWING AND 3 FOLLOWING)
+FROM insurance_data;
+
+-- 11: For each patient, find the rolling average of the last 2 claims.
+SELECT *,
+AVG(claim) OVER(ROWS BETWEEN 2 PRECEDING AND 1 PRECEDING)
+FROM insurance_data;
+
+-- 12: Find the first claimed insurance value for male and female patients, 
+-- within each region order the data by patient age in ascending order, and 
+-- only include patients who are non-diabetic and have a bmi value between 25 and 30.
+
+WITH filtered_data AS (
+	SELECT * FROM insurance_data
+    WHERE diabetic = 'No' AND bmi BETWEEN 25 AND 30
+)
+SELECT region, gender, first_claim FROM (
+	SELECT *,
+	FIRST_VALUE(claim) OVER(PARTITION BY region, gender ORDER BY age) AS first_claim,
+	ROW_NUMBER() OVER(PARTITION BY region, gender ORDER BY age) AS row_num
+	FROM filtered_data
+) t
+WHERE t.row_num = 1;
+
 
 
