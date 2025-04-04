@@ -61,11 +61,25 @@ SELECT * FROM (
 		ORDER BY MONTHNAME(date)
 ) t
 WHERE t.month_rank < 3
-ORDER BY month DESC, month_rank ASC
+ORDER BY month DESC, month_rank ASC;
 
 -- 2. Create roll no.from branch and marks.
 
--- FIRST_VALUE/LAST VALUE/NTH_VALUE
+-- FIRST_VALUE/LAST_VALUE/NTH_VALUE
+use sub_query;
+
+-- FIRST_VALUE
+SELECT *, 
+FIRST_VALUE(name) OVER(ORDER BY marks DESC)
+FROM marks;
+
+-- LAST_VALUE
+-- Concepts of Frames also included. 
+SELECT *, 
+LAST_VALUE(marks) OVER(PARTITION BY branch ORDER BY marks DESC
+ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)
+FROM marks;
+
 
 
 
