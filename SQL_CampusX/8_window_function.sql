@@ -88,6 +88,37 @@ FROM marks;
 
 -- Question.
 -- 1. Find the branch toppers. 
--- 2. 
+SELECT name, branch FROM (
+	SELECT *,
+	LAST_VALUE(name) OVER w AS 'topper_name',
+	LAST_VALUE(marks) OVER w AS 'topper_marks'
+	FROM marks
+) t
+WHERE t.name = t.topper_name AND t.marks = t.topper_marks
+WINDOW w AS (
+	PARTITION BY branch ORDER BY marks DESC 
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+);
+
+-- LEAD & LAG
+-- Used to create an lagging column. 
+SELECT *, 
+LAG(marks) OVER(PARTITION BY branch ORDER BY student_id),
+LEAD(marks) OVER(PARTITION BY branch ORDER BY student_id)
+FROM marks;
+
+-- Find the Month on Month revenue growth of zomato.
+USE zomato;
+
+SELECT MONTHNAME(date), SUM(amount),
+((SUM(amount) - LAG(SUM(amount)) OVER(ORDER BY MONTH(date))) / LAG(SUM(amount)) OVER(ORDER BY MONTH(date)))*100
+FROM orders
+GROUP BY MONTHNAME(date)
+ORDER BY MONTH(date) ASC
+
+
+
+-- 2. FRAME clause.
+
 
 
