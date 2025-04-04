@@ -24,3 +24,5 @@
 
 -- subqueries can be used with INSERT, SELECT, UPDATE, DELETE
 -- In SELECT --> WHERE, SELECT, FROM, HAVING
+
+# 1. Independent SubQuery - Scalar SubQuery.
