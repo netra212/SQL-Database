@@ -42,7 +42,7 @@ SELECT * FROM (
     WINDOW w AS (
 			ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
     )
-) t
+) t;
 
 
 -- Running Average or Moving Average. 
@@ -50,6 +50,46 @@ SELECT * FROM (
 -- We decide the window = 5
 -- Calculating the average between current & up to 5. Running Average depends on the near by 
 -- values. Current trends ko lagiii... Running Average nikalxau. 
+
+SELECT * FROM (
+	SELECT
+	CONCAT("Match- ", CAST(ROW_NUMBER() OVER(ORDER BY ID) AS CHAR)) AS 'match_no',
+	SUM(batsman_run) AS 'runs_scored',
+	SUM(SUM(batsman_run)) OVER w AS 'career_runs',
+    AVG(SUM(batsman_run)) OVER w AS 'career_avg',
+    AVG(SUM(batsman_run)) OVER(ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS 'rolling_avg'
+	FROM ipl_data
+	WHERE batter = 'V Kohli'
+	GROUP BY ID
+    WINDOW w AS (
+			ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    )
+) t;
+
+-- Percent of Total. 
+-- Like 36% of total_sales. 
+use sql_cx_live;
+
+SELECT *,
+(total_value/SUM(total_value) OVER())*100 AS 'percent_of_total'
+FROM (
+	SELECT f_id, SUM(amount) AS 'total_values'
+	FROM orders t1
+	JOIN order_details t2
+	ON t1.order_id = t2.order_id
+) t
+JOIN food t3
+ON t.f_id = t3.f_id
+ORDER BY (total_value/SUM(total_value) OVER())*100 DESC;
+
+
+
+
+
+
+
+
+
 
 
 
