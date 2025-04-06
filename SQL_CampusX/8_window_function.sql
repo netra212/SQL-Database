@@ -36,7 +36,7 @@ FROM marks;
 -- RANK/DENSE_RANK/ROW_NUMBER
 -- RANK - Gives the rank on partition or Window.
 SELECT *,
-RANK() OVER(PARTITION BY branch ORDER BY marks DESC )
+RANK() OVER(PARTITION BY branch ORDER BY marks DESC)
 FROM marks;
 
 -- DENSE_RANK
@@ -116,9 +116,4 @@ FROM orders
 GROUP BY MONTHNAME(date)
 ORDER BY MONTH(date) ASC
 
-
-
 -- 2. FRAME clause.
-
-
-
