@@ -69,12 +69,23 @@ emp_salary <(
              and 
                    emp_duration_in_days>200)+2000;
 
--- ISSUES
-	--
-    --
-    --
+-- ISSUE 
+     -- DECREASES REDABILITY.
+     -- COMPLEXITY INCREASES.
+     -- DECREASES PERFORMANCE.
+     
 
 -- Solve above problem using the common table expression. 
--- we write CTE with 'WITH CLAUSE'
+-- We write CTE with 'WITH CLAUSE'
+-- CTE LIFE is only till the execution + formation {together} of the query. 
+with t as
+(
+  select avg(emp_salary)  as avg_salary from employees where emp_department= 'it' and emp_duration_in_days>200
+) 
+select * from employees
+where
+emp_salary >(select avg_salary  from t ) - 2000
+and  emp_salary<(select avg_salary from t )+2000
 
-with 
+-- SELECT THE DEPARTMENT FROM EMPLOYEES TABLE WHOSE AVERAGE SALARY IS MORE THAN AVERAGE SALARY ACROSS ALL DEPARTMENTS. 
+
