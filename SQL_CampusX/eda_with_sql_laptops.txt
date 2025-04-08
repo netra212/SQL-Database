@@ -1,0 +1,17 @@
+There are three types of data types in SQL. 
+1. Numerical
+    a. INT.
+    b. DECIMAL. 
+
+2. TEXT:
+    a. CHAR: stored FIXED size. 
+    b. VARCHAR: We mentioned the upper limit here. 
+    c. TEXT: can stored up to 65,535 characters
+    d. MEDIUMTEXT: can stored up to 16,777,215 characters.
+    e. LONGTEXT: 4,294,967,295 characters
+
+3. Temporal:
+    a. DATE. 
+    b. TIME.
+
+# WILDCARDS:
