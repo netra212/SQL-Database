@@ -248,9 +248,10 @@ FROM laptopdata l2 WHERE l2.index = l1.index);
 SELECT * FROM laptopdata;
 
 -- 
-SELECT REPLACE(SUBSTRING_INDEX(Cpu, ' ', -1), 'GHz', '') FROM laptopdata;
+UPDATE laptopdata l1
+SET cpu_brand = (SELECT 
+                CAST(REPLACE(SUBSTRING_INDEX(Cpu, ' ', -1), 'GHz', '') 
+                AS DECIMAL(10, 2))
+                WHERE l2.index = l1.index);
 
-
-
-
-
+SELECT * FROM laptopdata;
