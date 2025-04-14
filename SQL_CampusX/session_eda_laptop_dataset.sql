@@ -96,7 +96,40 @@ CASE WHEN secondary_storage <= 2 THEN secondary_storage*1024
     ELSE secondary_storage END
 FROM laptopdata;
 
+-- EDA 
+-- Univariate
+-- Bivarite 
+-- Numerical Numerical. 
+-- Categorical Categorical. 
+-- Categorical Numerical. 
 
+-- 1. Head -> tail -> sample. 
 
+-- 2. For numerical cols. 
+    -- 8 number summary [count, min, max, std, q1, q2, q3]
+    -- missing values. 
+    -- outliers. 
+    -- horizontal/vertical histograms. 
 
+-- 3. For categorical cols. 
+    -- value counts --> pie chart. 
+    -- missing values. 
 
+-- 4. numerical values. 
+    -- side by side 8 number analysis. 
+    -- scatterplot. 
+    -- correlation.
+
+-- 5. categorical-categorical
+    -- contingency table -> stacked bar chart. 
+
+-- 6. numerical-categorical
+    -- compare distribution across categories. 
+
+-- 7. missing value treatment. 
+
+-- 8. feature engineering.
+    -- ppi
+    -- price_bracket.
+
+-- 10. one hot encoding.
