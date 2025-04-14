@@ -98,4 +98,70 @@ SELECT LOCATE("w", "hello world");
 SELECT LPAD('8888888888', '13', '+44');
 SELECT RPAD('8888888888', '13', '+44');
 
--- 
+-- EDA On Laptop Datasets.
+-- 1. Create backup
+CREATE TABLE laptops_backups LIKE laptopdata;
+
+INSERT INTO laptops_backups
+SELECT * FROM laptopdata;
+
+-- 2. Check number of rows
+
+-- 3. Check memory consumption for reference.
+-- 256 kb.
+SELECT DATA_LENGTH/1024 FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = "sub_query"
+AND TABLE_NAME = "laptopdata"; 
+
+-- 4. Drop non important cols
+ALTER TABLE laptopdata
+DROP COLUMN `Unnamed: 0`;
+
+-- Checking. 
+SELECT * FROM laptopdata;
+
+-- 5. Drop null values.
+-- QUERY FORMAT IS CORRECT BUT SINCE NO INDEX IS PRESENT IN THE DATA SO. 
+DELETE FROM laptopdata 
+WHERE `index` IN (SELECT `index` FROM laptopdata
+WHERE Company IS NULL AND 
+TypeName IS NULL AND 
+Inches IS NULL AND 
+ScreenResolution IS NULL AND 
+Cpu IS NULL AND 
+Ram IS NULL AND
+Memory IS NULL AND 
+Gpu IS NULL AND
+OpSys IS NULL AND 
+Weight IS NULL AND 
+Price IS NULL);
+
+-- 6. Drop duplicates
+-- Fetching the id of the first occurance.
+DELETE FROM zomato.duplicates 
+WHERE id NOT IN (SELECT MIN(id)  
+FROM zomato.duplicates
+GROUP BY name, gender, age);
+
+--
+-- For categorical DISTINCT is very good functions. 
+SELECT DISTINCT Company FROM laptopdata;
+SELECT DISTINCT TypeName FROM laptopdata;
+ALTER TABLE laptopdata MODIFY COLUMN Inches DECIMAL(10, 1);
+# SELECT * FROM laptopdata;
+SELECT DISTINCT ScreenResolution FROM laptopdata; -- Too much hetic column.
+SELECT DISTINCT Cpu FROM laptopdata; -- Too much hetic column.
+SELECT DISTINCT Ram FROM laptopdata;
+
+UPDATE laptopdata l1
+SET Ram = (SELECT REPLACE(Ram, 'GB', '') 
+            FROM laptopdata l2 
+            WHERE l2.index = l1.index);
+
+SELECT * FROM laptopdata;
+
+# Modifying Ram Column to Integer.
+ALTER TABLE laptopdata MODIFY COLUMN Ram INTEGER 
+
+
+
