@@ -42,7 +42,49 @@ SELECT * FROM laptopdata;
 
 -- Cpu_name
 
--- Memory
+
+-- Memory --> Converted to three columns such as Type | primary storage | secondary storage
+-- Type     | primary storage | secondary storage
+--  HDD     |   1024          | 0
+-- Hybrid   |   526           | 1
+-- 
+ALTER TABLE laptopdata
+ADD COLUMN memory_type VARCHAR(255) AFTER Memory,
+ADD COLUMN primary_storage INT AFTER memory_type,
+ADD COLUMN secondary_storage INT AFTER primary_storage;
+
+SELECT * FROM laptopdata;
+
+SELECT Memory,
+CASE
+    WHEN Memory LIKE '%SSD%' AND Memory LIKE '%HDD%' THEN 'Hybrid'
+    WHEN Memory LIKE '%SSD%' THEN 'SSD'
+    WHEN Memory LIKE '%HDD%' THEN 'HDD'
+    WHEN Memory LIKE '%Flash Storage%' THEN 'Flash Storage'
+    WHEN Memory LIKE '%Hybrid%' THEN 'Hybrid'
+    WHEN Memory LIKE '%Flash Storage%' AND Memory LIKE '%HDD%' THEN 'Hybrid'
+END AS 'memory_type'
+FROM laptopdata;
+
+UPDATE laptopdata
+SET memory_type = CASE
+    WHEN Memory LIKE '%SSD%' AND Memory LIKE '%HDD%' THEN 'Hybrid'
+    WHEN Memory LIKE '%SSD%' THEN 'SSD'
+    WHEN Memory LIKE '%HDD%' THEN 'HDD'
+    WHEN Memory LIKE '%Flash Storage%' THEN 'Flash Storage'
+    WHEN Memory LIKE '%Hybrid%' THEN 'Hybrid'
+    WHEN Memory LIKE '%Flash Storage%' AND Memory LIKE '%HDD%' THEN 'Hybrid'
+    ELSE NULL
+END;
+
+SELECT * FROM laptopdata;
+
+SELECT Memory, 
+SUBSTRING_INDEX(Memory, '+', 1),
+CASE WHEN Memory LIKE '%+%' THEN 
+    SUBSTRING_INDEX(Memory, '+', -1) ELSE 0
+END
+FROM laptopdata;
 
 
 
