@@ -118,24 +118,50 @@ FROM laptopdata;
         
 -- 2. For numerical cols. 
     -- 8 number summary [count, min, max, std, q1, q2, q3]
-    SELECT COUNT(Price), 
-    MAX(Price), 
-    MIN(Price), 
-    AVG(Price), 
-    STD(Price), 
-    PERCENTILE_CONT(0.25) WITHIN GROUP(ORDER BY PRICE) OVER() AS 'Q1',
-    PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY PRICE) OVER() AS 'Median',
-    PERCENTILE_CONT(0.75) WITHIN GROUP(ORDER BY PRICE) OVER() AS 'Q3'
-    FROM laptopdata;
+   #  SELECT COUNT(Price), 
+#     MAX(Price), 
+#     MIN(Price), 
+#     AVG(Price), 
+#     STD(Price), 
+#     PERCENTILE_CONT(0.25) WITHIN GROUP(ORDER BY PRICE) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS 'Q1',
+#     PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY PRICE) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS 'Median',
+#     PERCENTILE_CONT(0.75) WITHIN GROUP(ORDER BY PRICE) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS 'Q3'
+#     FROM laptopdata 
+#     ORDER BY `index` LIMIT 1;
+
+    -- Missing values. 
+  #   SELECT COUNT(Price)
+#     FROM laptopdata
+#     WHERE PRICE IS NULL 
+
+    -- Outliers. 
+    # SELECT * FROM (SELECT *, 
+#     PERCENTILE_CONT(0.25) WITHIN GROUP(ORDER BY PRICE) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS 'Q1',
+#     PERCENTILE_CONT(0.75) WITHIN GROUP(ORDER BY PRICE) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS 'Q3'
+#     FROM laptopdata) t
+#     WHERE t.Price < t.Q1 - (1.5 * (t.Q3 - t.Q1)) OR 
+#     t.Price > t.Q1 + (1.5 * (t.Q3 - t.Q1));
+
+    -- Horizontal/Vertical histograms. 
+    SELECT t.buckets, REPEAT('*', COUNT(*)/5) FROM (SELECT Price, 
+    CASE 
+        WHEN Price BETWEEN 0 AND 25000 THEN '0-25K'
+        WHEN Price BETWEEN 25001 AND 50000 THEN '25K-50K'
+        WHEN Price BETWEEN 50001 AND 75000 THEN '50K-75k'
+        WHEN Price BETWEEN 75001 AND 100000 THEN '75K-100K'
+        ELSE '>100K'
+    END AS 'buckets'
+    FROM laptopdata) t
+    GROUP BY t.buckets;
     
-    -- missing values. 
-    -- outliers. 
-    -- horizontal/vertical histograms. 
 
 -- 3. For categorical cols. 
     -- value counts --> pie chart. 
     -- missing values. 
-
+    
+    SELECT Company, COUNT(Company)
+    FROM laptopdata;
+    
 -- 4. numerical values. 
     -- side by side 8 number analysis. 
     -- scatterplot. 
