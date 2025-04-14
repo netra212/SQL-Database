@@ -104,9 +104,30 @@ FROM laptopdata;
 -- Categorical Numerical. 
 
 -- 1. Head -> tail -> sample. 
-
+    -- HEAD
+    SELECT * FROM laptopdata
+    ORDER BY `index` LIMIT 5;
+    
+    -- TAIL
+    SELECT * FROM laptopdata
+    ORDER BY `index` DESC LIMIT 5;
+    
+    -- RANDOM
+     SELECT * FROM laptopdata
+     ORDER BY rand() LIMIT 5;
+        
 -- 2. For numerical cols. 
     -- 8 number summary [count, min, max, std, q1, q2, q3]
+    SELECT COUNT(Price), 
+    MAX(Price), 
+    MIN(Price), 
+    AVG(Price), 
+    STD(Price), 
+    PERCENTILE_CONT(0.25) WITHIN GROUP(ORDER BY PRICE) OVER() AS 'Q1',
+    PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY PRICE) OVER() AS 'Median',
+    PERCENTILE_CONT(0.75) WITHIN GROUP(ORDER BY PRICE) OVER() AS 'Q3'
+    FROM laptopdata;
+    
     -- missing values. 
     -- outliers. 
     -- horizontal/vertical histograms. 
@@ -133,3 +154,6 @@ FROM laptopdata;
     -- price_bracket.
 
 -- 10. one hot encoding.
+
+
+
