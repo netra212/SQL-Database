@@ -80,11 +80,23 @@ END;
 SELECT * FROM laptopdata;
 
 SELECT Memory, 
-SUBSTRING_INDEX(Memory, '+', 1),
-CASE WHEN Memory LIKE '%+%' THEN 
-    SUBSTRING_INDEX(Memory, '+', -1) ELSE 0
-END
+REGEXP_SUBSTR(SUBSTRING_INDEX(Memory, '+', 1),'[0-9]+'),
+CASE WHEN Memory LIKE '%+%' THEN  REGEXP_SUBSTR(SUBSTRING_INDEX(Memory, '+', -1), '[0-9]+') ELSE 0 END FROM laptopdata;
+
+SELECT 
+primary_storage, 
+CASE
+    WHEN primary_storage <= 2 THEN primary_storage*1024
+    ELSE primary_storage END
 FROM laptopdata;
+
+SELECT
+secondary_storage,
+CASE WHEN secondary_storage <= 2 THEN secondary_storage*1024
+    ELSE secondary_storage END
+FROM laptopdata;
+
+
 
 
 
