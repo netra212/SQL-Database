@@ -161,7 +161,71 @@ SET Ram = (SELECT REPLACE(Ram, 'GB', '')
 SELECT * FROM laptopdata;
 
 # Modifying Ram Column to Integer.
-ALTER TABLE laptopdata MODIFY COLUMN Ram INTEGER 
+ALTER TABLE laptopdata MODIFY COLUMN Ram INTEGER;
 
+# 
+SELECT DISTINCT Memory FROM laptopdata;
+SELECT GPU FROM laptopdata;
+
+-- Upating the Weight Column. 
+UPDATE laptopdata l1
+SET Weight = (SELECT REPLACE(Weight, 'kg', '') 
+              FROM laptopdata l2 WHERE l2.index = l1.index);
+
+-- PRICE COL. 
+UPDATE laptopdata l1
+SET Price = (SELECT REPLACE(Price, 'kg', '') 
+              FROM laptopdata l2 WHERE l2.index = l1.index);
+
+ALTER TABLE laptopdata MODIFY COLUMN Price INTEGER;
+
+SELECT 
+OpSys FROM laptopdata;
+
+-- mac
+-- windows
+-- linux
+-- no os
+-- Android chrome (others)
+
+SELECT OpSys,
+CASE
+    WHEN OpSys LIKE '%mac%' THEN 'macos'
+    WHEN OpSys LIKE 'windows%' THEN 'windows'
+    WHEN OpSys LIKE '%linux%' THEN 'linux'
+    WHEN OpSys = 'No OS' THEN 'N/A'
+    ELSE 'other'
+END AS 'os_brand'
+FROM laptopdata;
+
+UPDATE laptopdata
+SET OpSys = 
+CASE
+    WHEN OpSys LIKE '%mac%' THEN 'macos'
+    WHEN OpSys LIKE 'windows%' THEN 'windows'
+    WHEN OpSys LIKE '%linux%' THEN 'linux'
+    WHEN OpSys = 'No OS' THEN 'N/A'
+    ELSE 'other'
+END;
+SELECT * FROM laptopdata;
+
+
+-- Making two new column.
+ALTER TABLE laptopdata
+ADD COLUMN gpu_brand VARCHAR(255) AFTER Gpu, 
+ADD COLUMN gpu_name VARCHAR(255) AFTER gpu_brand;
+
+SELECT * FROM laptopdata;
+
+UPDATE laptopdata l1
+SET gpu_brand = (SELECT Gpu, SUBSTRING_INDEX(Gpu, ' ', 1) 
+FROM laptopdata l2 WHERE l2.index = l1.index);
+
+SELECT * FROM laptopdata;
+
+UPDATE laptopdata l1
+SET gpu_name = (SELECT REPLACE(Gpu, gpu_brand, '') 
+                FROM laptopdata l2 
+                WHERE l2.index = l1.index);
 
 
