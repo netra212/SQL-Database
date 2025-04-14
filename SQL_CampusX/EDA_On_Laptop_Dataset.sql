@@ -229,3 +229,28 @@ SET gpu_name = (SELECT REPLACE(Gpu, gpu_brand, '')
                 WHERE l2.index = l1.index);
 
 
+-- Dropping the GPU Column name. 
+ALTER TABLE laptopdata DROP COLUMN Gpu;
+SELECT * FROM laptopdata;
+
+-- -------------------
+ALTER TABLE laptopdata
+ADD COLUMN cpu_brand VARCHAR(255) AFTER Cpu, 
+ADD COLUMN cpu_name VARCHAR(255) AFTER cpu_brand, 
+ADD COLUMN cpu_speed DECIMAL(10, 1) AFTER cpu_name;
+
+SELECT * FROM laptopdata;
+
+UPDATE laptopdata l1
+SET cpu_brand = (SELECT SUBSTRING_INDEX(Cpu, ' ', 1)
+FROM laptopdata l2 WHERE l2.index = l1.index);
+
+SELECT * FROM laptopdata;
+
+-- 
+SELECT REPLACE(SUBSTRING_INDEX(Cpu, ' ', -1), 'GHz', '') FROM laptopdata;
+
+
+
+
+
