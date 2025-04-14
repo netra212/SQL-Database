@@ -15,3 +15,19 @@ There are three types of data types in SQL.
     b. TIME.
 
 # WILDCARDS:
+- Used to match a string value against a patter using wilcard characters. 
+- Commonly used in SELECT
+
+# Some Common Strings Functions. 
+- UPPER & LOWER
+-- CONCAT & concat_ws
+
+-> CHAR_LENGTH vs LENGTH -> where both are not same -
+The main difference between CHAR_LENGTH and LENGTH is that CHAR_LENGTH returns the length of a string in characters, while LENGTH returns the length of a string in bytes. This difference is important when dealing with multi-byte character sets, such as UTF-8, where a single character may be represented by multiple bytes.
+Example - café
+
+-- INSERT(str, pos, len newstr)
+-- str: The original string to insert into.
+-- pos: The position at which to insert the new substring. The first position is 1.
+-- len: The number of characters to replace.
+-- newstr: The new substring to insert.
