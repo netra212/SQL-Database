@@ -184,6 +184,23 @@ FROM laptopdata;
     SELECT * FROM laptopdata
     WHERE Price IS NULL;
     
+    -- replace missing value with the mean of the price 
+    UPDATE laptopdata
+    SET Price = (SELECT AVG(Price)
+    FROM laptopdata)
+    WHERE Price IS NULL;
+    
+    -- replacing the mean price of the corresponding company.
+    UPDATE laptopdata l1
+    SET Price = (SELECT AVG(Price)
+    FROM laptopdata l2 WHERE l2.company = l1.company)
+    WHERE Price IS NULL;
+    
+    -- replacing with the company + processor. (Cpu core i5)
+    UPDATE laptopdata l1
+    SET Price = (SELECT AVG(Price)
+    FROM laptopdata l2 WHERE l2.company = l1.company AND l2.Cpu_name = l1.Cpu_name)
+    WHERE Price IS NULL;
     
 -- 8. feature engineering.
     -- ppi
