@@ -154,7 +154,6 @@ FROM laptopdata;
     FROM laptopdata) t
     GROUP BY t.buckets;
     
-
 -- 3. For categorical cols. 
     -- value counts --> pie chart. 
     -- missing values. 
@@ -164,17 +163,28 @@ FROM laptopdata;
     
 -- 4. numerical values. 
     -- side by side 8 number analysis. 
+    
     -- scatterplot. 
+    
     -- correlation.
 
 -- 5. categorical-categorical
     -- contingency table -> stacked bar chart. 
-
+    
 -- 6. numerical-categorical
     -- compare distribution across categories. 
-
+    SELECT Company, 
+    MIN(Price),MAX(Price), 
+    AVG(Price), STD(Price)
+    FROM laptopdata
+    GROUP BY Company;
+    
 -- 7. missing value treatment. 
 
+    SELECT * FROM laptopdata
+    WHERE Price IS NULL;
+    
+    
 -- 8. feature engineering.
     -- ppi
     -- price_bracket.
