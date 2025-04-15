@@ -58,6 +58,21 @@ SELECT NOW(); -- Tells DATE & TIME Both.
     SECOND(start_time),
     DAYOFYEAR(start_time), 
     WEEKOFYEAR(start_time),
-    LAST_DAY(start_time)
-    FROM uber_rides
+    LAST_DAY(start_time) -- Extract the last month and from that month, it extract the last day. 
+    -- Suppose, last month is march then last day of march month is 31st will be display as output. 
+    FROM uber_rides;
 
+-- DATE_FORMAT()
+
+SELECT start_time, 
+DATE_FORMAT(start_time, '%d %b %y'),
+end_time, 
+DATE_FORMAT(end_time, '%l:%i %p')
+FROM uber_rides;
+
+-- Type Conversion
+-- 1. Implicit Type Conversion.
+-- 2. Explicity Type Conversion - STR_TO_DATE()
+SELECT '2023-03-11' > '2023-03-09';
+
+SELECT STR_TO_DATE('9 Mar 2023', '%e %b %y');
