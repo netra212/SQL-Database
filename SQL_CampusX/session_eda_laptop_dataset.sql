@@ -243,6 +243,9 @@ FROM laptopdata;
     GROUP BY screen_size;
     
 -- 10. one hot encoding.
-
-
-
+    SELECT gpu_brand,
+    CASE WHEN gpu_brand = 'Intel' THEN 1 ELSE 0 END AS 'intel',
+    CASE WHEN gpu_brand = 'AMD' THEN 1 ELSE 0 END AS 'amd',
+    CASE WHEN gpu_brand = 'nvidia' THEN 1 ELSE 0 END AS 'nvidia',
+    CASE WHEN gpu_brand = 'arm' THEN 1 ELSE 0 END AS 'arm'
+    FROM laptopdata;
