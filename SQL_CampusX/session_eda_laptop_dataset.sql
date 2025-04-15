@@ -204,8 +204,44 @@ FROM laptopdata;
     
 -- 8. feature engineering.
     -- ppi
-    -- price_bracket.
+    ALTER TABLE laptopdata
+    ADD COLUMN ppi INTEGER;
 
+    SELECT ROUND(SQRT(resolution_width*resolution_height + resolution_width*resolution_height)/ Inches)
+    FROM laptopdata;
+    
+    UPDATE laptopdata
+    SET ppi = ROUND(SQRT(resolution_width*resolution_width + resolution_height*resolution_height)/ Inches);
+    
+    SELECT * FROM laptopdata
+    ORDER BY ppi ASC;
+    
+    -- screen size bracket. 
+    ALTER TABLE laptopdata
+    ADD COLUMN screen_size VARCHAR(255) AFTER Inches;
+    
+    SELECT *, 
+    CASE
+        WHEN NTILE(3) OVER(ORDER BY Inches) = 1 THEN "small"
+        WHEN NTILE(3) OVER(ORDER BY Inches) = 2 THEN "medium"
+        ELSE "large"
+    END AS 'Type'
+    FROM laptopdata;
+    
+    UPDATE laptopdata
+    SET screen_size = 
+    CASE
+        WHEN Inches < 14.0 THEN "small"
+        WHEN Inches >= 14.0 AND Inches < 17.0 THEN "medium"
+        ELSE "large"
+    END;
+    
+    SELECT * FROM laptopdata;
+    
+    SELECT screen_size, AVG(Price)
+    FROM laptopdata
+    GROUP BY screen_size;
+    
 -- 10. one hot encoding.
 
 
