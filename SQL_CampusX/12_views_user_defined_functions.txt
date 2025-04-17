@@ -1,0 +1,8 @@
+# Views.
+- Virtual tables that does not store any data on its own but presents a customized view of one or more tables in a database. 
+- A view can be thought of as a pre-defined SELECT statement that retrieves data from one or more tables and returns a specific subset of data to the user. 
+- so basically it is a logical table instead of a physical table. 
+
+- Once a view is created, it can be used in the same way as a table in SQL queries, and any changes made to the underlying tables will be reflected in the view. 
+- Simple Views - created from 1 single table. 
+- Complex Views - Created from multiple tables with the help of joins, subquery etc. 
