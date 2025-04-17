@@ -1,0 +1,22 @@
+
+# Why can't a single table hold all the data ?
+-> Since, We don't want any kinds of data redundancy. 
+-> Another reason is like anomaly. 
+    1. Insertion Anomaly. 
+    2. Deletion Anomaly. 
+    3. Updation Anomaly.
+
+# 1st Normal Form:-
+A table is in 1 NF if:-
+    a. There are only single valued attributes or each col should contain atomic values. 
+    b. Attribute Domain does not change -> data type should not change. 
+    c. There is a unique name for every attributes/column. 
+    d. The order in which data is stored does not matter. 
+
+# 2nd Normal Form:- 
+A table is in 2NF if:
+    a. It is already in 1NF. 
+    b. It does not contain any partial dependency.
+Partial dependency occurs when a non-key attribute is dependent on only a part of the primary key instead of the entire key.
+
+# 3rd Normal Form:-
