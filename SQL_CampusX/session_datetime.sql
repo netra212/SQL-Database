@@ -99,5 +99,3 @@ CREATE TABLE posts(
 INSERT INTO posts(user_id, content) VALUES (1, "hello world");
 
 SELECT * FROM posts;
-
-
