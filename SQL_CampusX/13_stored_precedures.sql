@@ -17,7 +17,44 @@ BEGIN
     
     IF user_count = 0 THEN 
         INSERT INTO users (name, email) VALUES (input_name, input_email);
+        SET message = "User Inserted";
+    ELSE
+        SET message = "Email already exists";
     END IF;
 END
 
-CALL add_user('Ankit', 'ankit123@gmail.com')
+-- Calling the Procedure
+SET @message = ''; 
+CALL add_user('Ankit', 'ankit123@gmail.com', @message)
+SELECT @message -- Printing the output.
+
+--
+CREATE PROCEDURE place_order (
+    IN input_user_id INTEGER,
+    IN input_r_id INTEGER,
+    OUT total_amount INTEGER
+)
+BEGIN
+    -- insert into orders table. 
+    DECLARE new_order_id INTEGER; -- declaring a new variable.
+    DECLARE f_id1 INTEGER;
+    DECLARE f_id2 INTEGER;
+
+    SET f_id1 = SUBSTRING_INDEX(input_f_ids, ',', 1);
+    SET f_id2 = SUBSTRING_INDEX(input_f_ids, ',', -1)
+
+    SELECT MAX(order_id) + 1 INTO new_order_id FROM orders;
+
+    SELECT SUM(price) FROM menu
+    WHERE r_id = input_r_Id AND f_id (f_id1, f_id2)
+
+    -- Insert into order_details table. 
+    INSER INTO orders (order_id, user_id, r_id, amount, date) VALUES
+    (new_order_id, input_user_id, input_r_id, total_amount, DATE(NOW()));
+
+    INSERT INTO order_details (order_id, f_id) VALUES
+    (new_order_id, f_id1), (new_order_id, f_id2)
+END
+
+-- Transactions.
+-- Commit, Rollback and Savepoint. 
