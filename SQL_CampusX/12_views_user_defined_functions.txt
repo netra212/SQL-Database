@@ -16,4 +16,62 @@
 # Materialized Views:
 - contains the results of a query.
 - It is pre-computed and stored on disk which makes them much faster to access.
-- 
+
+# Advantages of using a view. 
+- No Physical storage. 
+- security.
+- make complex queries simple.
+
+# User defined functions.
+- Syntax
+DELIMITER $$
+
+CREATE FUNCTION Function_Name(
+    Parameter_1 DataType, 
+    Parameter_2 DataType,
+    Parameter_n DataType,
+)
+RETURN Return_DataType
+[NOT] DETERMINISTIC
+BEGIN
+    Function Body
+    Return Return_Value
+END $$
+
+DELIMITER;
+
+
+-----------
+CREATE FUNCTION hello_world ()
+RETURNS VARCHAR(255)
+BEGIN
+
+RETURN "Hello World";
+END
+
+SELECT hello_world() <-- calling a function. 
+
+SELECT hello_world() AS message;
+
+SELECT UPPER(name) FROM person
+
+
+----
+CREATE FUNCTION proper_name(
+    name VARCHAR(255), 
+    gender VARCHAR(255)
+)
+RETURN VARCHAR(255)
+BEGIN
+    DECLARE title VARCHAR(255)
+    IF gender = 'M' THEN
+        SET title = CONCAT('Mr', ' ', name);
+    ELSE
+        IF marries = 'Y' THEN
+            SET title = CONCAT('Mrs', ' ', name);
+        ELSE
+            SET title = CONCAT('Ms', ' ', name);
+        something
+    END IF;
+RETURN 1;
+END
