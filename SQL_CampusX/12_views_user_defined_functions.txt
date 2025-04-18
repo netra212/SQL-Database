@@ -6,3 +6,14 @@
 - Once a view is created, it can be used in the same way as a table in SQL queries, and any changes made to the underlying tables will be reflected in the view. 
 - Simple Views - created from 1 single table. 
 - Complex Views - Created from multiple tables with the help of joins, subquery etc. 
+
+# Read Only Vs Updatable Views. 
+-> Read-only views:
+    - Aggregate 
+-> Updatable views: 
+    - Insert or Delete data in the underlying tables through the view. 
+
+# Materialized Views:
+- contains the results of a query.
+- It is pre-computed and stored on disk which makes them much faster to access.
+- 
