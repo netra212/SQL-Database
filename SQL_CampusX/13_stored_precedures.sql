@@ -58,3 +58,17 @@ END
 
 -- Transactions.
 -- Commit, Rollback and Savepoint. 
+-- Commit -> to save the change permanently, cannot be rollback.
+-- Rollback -> used to undo the change made by a transaction.
+-- Savepoint -> used to mark a specific point within a transaction where a rollback can be performed.
+
+
+-- What is Autocommit ?
+-- automatically commits each invidiual db transaction as soon as it completed, rather than an requires explicit commit command to be issued. 
+
+START TRANSACTIONS 
+
+
+
+-- ACID properties of a transaction?
+-- 1. 
