@@ -7,3 +7,4 @@ SELECT * FROM customers;
 
 -- Fetching data from views. 
 SELECT * FROM myView;
+

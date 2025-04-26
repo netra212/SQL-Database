@@ -1,9 +1,7 @@
 ------------------------------------------
 # What is Database ?
 ------------------------------------------
-A Database is a shared collection of logically related data and
-description of these data, designed to meet the information needs of
-an organization
+A Database is a shared collection of logically related data and description of these data, designed to meet the information needs of an organization.
 
 -> Data Storage: A database is used to store large amounts of structured data, making it easily accessible, searchable, and retrievable.
 
@@ -17,11 +15,11 @@ applications, providing dynamic content and user management.
 ------------------------------------------
 # Properties of an Ideal Database:
 ------------------------------------------
-1. Integrity
-2. Availability
-3. Security
-4. Independent of Application
-5. Concurrency
+    1. Integrity
+    2. Availability
+    3. Security
+    4. Independent of Application
+    5. Concurrency
 
 
 ------------------------------------------
@@ -38,7 +36,7 @@ applications, providing dynamic content and user management.
     These databases store data in columns rather than rows, making them well-suited for data warehousing and analytical applications. (Amazon Redshift, Google BigQuery).
 
 4. Graph Databases - 
-    These databases are used to store and query graph-structured data, such as social network connections or recommendation systems. (Neo4j, Amazon Neptune).
+    These databases are used to store and query graphical-structured data, such as social network connections or recommendation systems. (Neo4j, Amazon Neptune).
 
 5. Key-Value Database - 
     These databases store data as a collection of keys and values, making them well-suited for caching and simple data storage needs (Redis and Amazon DynamoDB).
@@ -57,7 +55,7 @@ applications, providing dynamic content and user management.
 # </DBMS>
 - A database management system (DBMS) is a software system that provides the interfaces and tools needed to store, organize, and manage data in a database. A DBMS acts as an intermediary between the database and the applications or users that access the data stored in the database.
 
-OS -> acts as a interfaces between the harddrive and database. 
+OS -> Acts as a interfaces between the harddrive and database. 
     Hard-Drive -> OS -> Database -> DBMS -> Users.
 
 # Functions of DBMS:
@@ -89,7 +87,6 @@ OS -> acts as a interfaces between the harddrive and database.
 3. Primary Key -
 - A primary key is a unique identifier for each tuple in a table. There can only be one primary key in a table, and it cannot contain null values.
     Eg:- RollNum
-
 
 4. Alternate Key -
 - An alternate key is a candidate key that is not used as the primary key. 

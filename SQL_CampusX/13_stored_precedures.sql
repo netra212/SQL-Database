@@ -69,6 +69,8 @@ END
 START TRANSACTIONS 
 
 
-
 -- ACID properties of a transaction?
--- 1. 
+-- 1. Atomicity.
+-- 2. Consistency.
+-- 3. Isolation.
+-- 4. Durability.

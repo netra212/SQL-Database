@@ -51,7 +51,7 @@ CREATE TABLE USERS(
     email VARCHAR(255) NOT NULL, 
     password VARCHAR(255) NOT NULL, 
 
-    -- Benefits of using Constraint: we can give separate name to our implemented constraint.
+    -- Benefits of using Constraint: We can give separate name to our implemented constraint.
     CONSTRAINT users_email_unique UNIQUE(name, email, password),
 
     -- Benefit of making primary key this way: If we are not able to make the primary key 
